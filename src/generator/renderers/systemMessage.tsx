@@ -1,0 +1,192 @@
+import { DiscordReaction, DiscordReactions, DiscordSystemMessage } from '@derockdev/discord-components-react';
+import { MessageType, type APIMessage, type GuildMember, type Message, type User } from 'discord.js';
+import React from 'react';
+import type { RenderMessageContext } from '..';
+import { parseDiscordEmoji } from '../../utils/utils';
+
+export default async function SystemMessage({ message, context }: { message: Message; context: RenderMessageContext }) {
+  const reactions = await Promise.all(
+    Array.from(message.reactions.cache.values()).map(async (reaction, id) => (
+      <DiscordReaction
+        key={`${message.id}r${id}`}
+        name={reaction.emoji.name!}
+        emoji={
+          (await context.callbacks.resolveTranscriptAssetUrl({
+            kind: 'emoji',
+            url: parseDiscordEmoji(reaction.emoji),
+            message: message.toJSON() as APIMessage,
+          })) ?? parseDiscordEmoji(reaction.emoji)
+        }
+        count={reaction.count}
+      />
+    ))
+  );
+  const threadPreviewAvatar =
+    message.author.displayAvatarURL({ size: 16 }) &&
+    ((await context.callbacks.resolveTranscriptAssetUrl({
+      kind: 'avatar',
+      url: message.author.displayAvatarURL({ size: 16 }),
+      message: message.toJSON() as APIMessage,
+    })) ??
+      message.author.displayAvatarURL({ size: 16 }));
+
+  switch (message.type) {
+    case MessageType.RecipientAdd:
+    case MessageType.UserJoin:
+      return (
+        <DiscordSystemMessage id={`m-${message.id}`} key={message.id} type="join">
+          <JoinMessage member={message.member} fallbackUser={message.author} />
+        </DiscordSystemMessage>
+      );
+
+    case MessageType.ChannelPinnedMessage:
+      return (
+        <DiscordSystemMessage id={`m-${message.id}`} key={message.id} type="pin">
+          <Highlight color={message.member?.roles.color?.hexColor}>
+            {message.author.displayName ?? message.author.username}
+          </Highlight>{' '}
+          pinned <i data-goto={message.reference?.messageId}>a message</i> to this channel.
+          {/* reactions */}
+          {message.reactions.cache.size > 0 && <DiscordReactions slot="reactions">{reactions}</DiscordReactions>}
+        </DiscordSystemMessage>
+      );
+
+    case MessageType.GuildBoost:
+    case MessageType.GuildBoostTier1:
+    case MessageType.GuildBoostTier2:
+    case MessageType.GuildBoostTier3:
+      return (
+        <DiscordSystemMessage id={`m-${message.id}`} key={message.id} type="boost">
+          <Highlight color={message.member?.roles.color?.hexColor}>
+            {message.author.displayName ?? message.author.username}
+          </Highlight>{' '}
+          boosted the server!
+        </DiscordSystemMessage>
+      );
+
+    case MessageType.ThreadStarterMessage:
+      return (
+        <DiscordSystemMessage id={`ms-${message.id}`} key={message.id} type="thread">
+          <Highlight color={message.member?.roles.color?.hexColor}>
+            {message.author.displayName ?? message.author.username}
+          </Highlight>{' '}
+          started a thread: <i data-goto={message.reference?.messageId}>{message.content}</i>
+        </DiscordSystemMessage>
+      );
+
+    // TODO: implement support for these:
+    case MessageType.Default:
+    case MessageType.RecipientRemove:
+    case MessageType.Call:
+    case MessageType.ChannelNameChange:
+    case MessageType.ChannelIconChange:
+    case MessageType.ChannelFollowAdd:
+    case MessageType.GuildDiscoveryDisqualified:
+    case MessageType.GuildDiscoveryRequalified:
+    case MessageType.GuildDiscoveryGracePeriodInitialWarning:
+    case MessageType.GuildDiscoveryGracePeriodFinalWarning:
+    case MessageType.ThreadCreated:
+      return (
+        <DiscordSystemMessage id={`ms-${message.id}`} key={message.id} type="thread">
+          <Highlight color={message.member?.roles.color?.hexColor}>
+            {message.author.displayName ?? message.author.username}
+          </Highlight>{' '}
+          started a thread: <strong>{message.content || 'new thread'}</strong>. See all <strong>threads</strong>.
+          <div className="discord-thread-preview-container">
+            <div className="discord-thread-preview-box">
+              <div className="discord-thread-preview-header">
+                {message.content || 'new thread'} <span>{message.thread?.messageCount || 1} Message &gt;</span>
+              </div>
+              <div className="discord-thread-preview-message">
+                <img src={threadPreviewAvatar ?? message.author.displayAvatarURL({ size: 16 })} alt="avatar" />
+                <span>
+                  <strong>{message.author.username}</strong> started the thread
+                </span>
+              </div>
+            </div>
+          </div>
+        </DiscordSystemMessage>
+      );
+    case MessageType.Reply:
+    case MessageType.ChatInputCommand:
+    case MessageType.GuildInviteReminder:
+    case MessageType.ContextMenuCommand:
+    case MessageType.AutoModerationAction:
+    case MessageType.RoleSubscriptionPurchase:
+    case MessageType.InteractionPremiumUpsell:
+    case MessageType.StageStart:
+    case MessageType.StageEnd:
+    case MessageType.StageSpeaker:
+    case MessageType.StageRaiseHand:
+    case MessageType.StageTopic:
+    case MessageType.GuildApplicationPremiumSubscription:
+    case MessageType.GuildIncidentAlertModeEnabled:
+    case MessageType.GuildIncidentAlertModeDisabled:
+    case MessageType.GuildIncidentReportRaid:
+    case MessageType.GuildIncidentReportFalseAlarm:
+    case MessageType.PurchaseNotification:
+    case MessageType.PollResult:
+      return undefined;
+
+    default:
+      return undefined;
+  }
+}
+
+export function Highlight({ children, color }: { children: React.ReactNode; color?: string }) {
+  return <i style={{ color: color ?? 'white' }}>{children}</i>;
+}
+
+const allJoinMessages = [
+  '{user} just joined the server - glhf!',
+  '{user} just joined. Everyone, look busy!',
+  '{user} just joined. Can I get a heal?',
+  '{user} joined your party.',
+  '{user} joined. You must construct additional pylons.',
+  'Ermagherd. {user} is here.',
+  'Welcome, {user}. Stay awhile and listen.',
+  'Welcome, {user}. We were expecting you ( ͡° ͜ʖ ͡°)',
+  'Welcome, {user}. We hope you brought pizza.',
+  'Welcome {user}. Leave your weapons by the door.',
+  'A wild {user} appeared.',
+  'Swoooosh. {user} just landed.',
+  'Brace yourselves {user} just joined the server.',
+  '{user} just joined. Hide your bananas.',
+  '{user} just arrived. Seems OP - please nerf.',
+  '{user} just slid into the server.',
+  'A {user} has spawned in the server.',
+  'Big {user} showed up!',
+  "Where's {user}? In the server!",
+  '{user} hopped into the server. Kangaroo!!',
+  '{user} just showed up. Hold my beer.',
+  'Challenger approaching - {user} has appeared!',
+  "It's a bird! It's a plane! Nevermind, it's just {user}.",
+  "It's {user}! Praise the sun! \\\\[T]/",
+  'Never gonna give {user} up. Never gonna let {user} down.',
+  'Ha! {user} has joined! You activated my trap card!',
+  'Cheers, love! {user} is here!',
+  'Hey! Listen! {user} has joined!',
+  "We've been expecting you {user}",
+  "It's dangerous to go alone, take {user}!",
+  "{user} has joined the server! It's super effective!",
+  'Cheers, love! {user} is here!',
+  '{user} is here, as the prophecy foretold.',
+  "{user} has arrived. Party's over.",
+  'Ready player {user}',
+  '{user} is here to kick butt and chew bubblegum. And {user} is all out of gum.',
+  "Hello. Is it {user} you're looking for?",
+];
+
+export function JoinMessage({ member, fallbackUser }: { member: GuildMember | null; fallbackUser: User }) {
+  const randomMessage = allJoinMessages[Math.floor(Math.random() * allJoinMessages.length)];
+
+  return randomMessage
+    .split('{user}')
+    .flatMap((item, i) => [
+      item,
+      <Highlight color={member?.roles.color?.hexColor} key={i}>
+        {member?.nickname ?? fallbackUser.displayName ?? fallbackUser.username}
+      </Highlight>,
+    ])
+    .slice(0, -1);
+}
