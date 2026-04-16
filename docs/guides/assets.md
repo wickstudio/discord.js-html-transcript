@@ -35,15 +35,15 @@ Pick exactly which asset categories to preserve:
 ```javascript
 const transcript = await discordTranscripts.createTranscript(channel, {
   assets: {
-    attachments: true,      // images, videos, audio, files
-    embeds: true,           // embed images, thumbnails, videos, icons
-    components: true,       // media gallery items, component files
-    avatars: true,          // user avatars
-    emojis: true,           // custom emoji + twemoji
-    guildIcons: true,       // transcript header guild icon
-    inviteIcons: true,      // invite preview server icons
-    roleIcons: true,        // highest-role icon images
-    serverTagBadges: true,  // server tag badge images
+    attachments: true, // images, videos, audio, files
+    embeds: true, // embed images, thumbnails, videos, icons
+    components: true, // media gallery items, component files
+    avatars: true, // user avatars
+    emojis: true, // custom emoji + twemoji
+    guildIcons: true, // transcript header guild icon
+    inviteIcons: true, // invite preview server icons
+    roleIcons: true, // highest-role icon images
+    serverTagBadges: true, // server tag badge images
   },
 });
 ```
@@ -74,26 +74,26 @@ const transcript = await discordTranscripts.createTranscript(channel, {
 
 The `asset.kind` property identifies the type of asset:
 
-| Kind | Description |
-|------|-------------|
-| `attachment-image` | Image attachment |
-| `attachment-video` | Video attachment |
-| `attachment-audio` | Audio attachment |
-| `attachment-file` | Generic file attachment |
-| `embed-image` | Embed image |
-| `embed-thumbnail` | Embed thumbnail |
-| `embed-video` | Embed video |
-| `embed-author-icon` | Embed author icon |
-| `embed-footer-icon` | Embed footer icon |
-| `component-image` | Component media gallery image |
-| `component-thumbnail` | Component thumbnail |
-| `component-file` | Component file |
-| `avatar` | User avatar |
-| `emoji` | Custom emoji or Twemoji |
-| `guild-icon` | Guild/server icon |
-| `invite-icon` | Invite preview server icon |
-| `role-icon` | Role icon image |
-| `server-tag-badge` | Server tag badge image |
+| Kind                  | Description                   |
+| --------------------- | ----------------------------- |
+| `attachment-image`    | Image attachment              |
+| `attachment-video`    | Video attachment              |
+| `attachment-audio`    | Audio attachment              |
+| `attachment-file`     | Generic file attachment       |
+| `embed-image`         | Embed image                   |
+| `embed-thumbnail`     | Embed thumbnail               |
+| `embed-video`         | Embed video                   |
+| `embed-author-icon`   | Embed author icon             |
+| `embed-footer-icon`   | Embed footer icon             |
+| `component-image`     | Component media gallery image |
+| `component-thumbnail` | Component thumbnail           |
+| `component-file`      | Component file                |
+| `avatar`              | User avatar                   |
+| `emoji`               | Custom emoji or Twemoji       |
+| `guild-icon`          | Guild/server icon             |
+| `invite-icon`         | Invite preview server icon    |
+| `role-icon`           | Role icon image               |
+| `server-tag-badge`    | Server tag badge image        |
 
 ## Using the Built-in Downloader
 
@@ -106,7 +106,7 @@ const transcript = await discordTranscripts.createTranscript(channel, {
   assets: { attachments: true, embeds: true, avatars: true },
   callbacks: {
     resolveAssetSrc: new TranscriptAssetDownloader()
-      .withMaxSize(10240)  // skip assets larger than 10MB
+      .withMaxSize(10240) // skip assets larger than 10MB
       .build(),
   },
 });

@@ -12,17 +12,13 @@ const discordTranscripts = require('discord.js-html-transcript');
 
 const messages = await channel.messages.fetch({ limit: 100 });
 
-const transcript = await discordTranscripts.generateFromMessages(
-  messages,
-  channel,
-  {
-    returnType: 'attachment',
-    features: {
-      search: true,
-      imagePreview: true,
-    },
-  }
-);
+const transcript = await discordTranscripts.generateFromMessages(messages, channel, {
+  returnType: 'attachment',
+  features: {
+    search: true,
+    imagePreview: true,
+  },
+});
 
 channel.send({
   files: [transcript],
@@ -39,17 +35,13 @@ import { Collection, Message, ExportReturnType } from 'discord.js';
 
 const messages = await channel.messages.fetch({ limit: 100 });
 
-const transcript = await discordTranscripts.generateFromMessages(
-  messages,
-  channel,
-  {
-    returnType: ExportReturnType.Attachment,
-    features: {
-      search: true,
-      imagePreview: true,
-    },
-  }
-);
+const transcript = await discordTranscripts.generateFromMessages(messages, channel, {
+  returnType: ExportReturnType.Attachment,
+  features: {
+    search: true,
+    imagePreview: true,
+  },
+});
 
 channel.send({
   files: [transcript],
@@ -62,7 +54,7 @@ channel.send({
 ## Parameters
 
 ```javascript
-generateFromMessages(messages, channel, options = {});
+generateFromMessages(messages, channel, (options = {}));
 ```
 
 ### `messages: Message[] | Collection<string, Message>`
@@ -85,11 +77,11 @@ All configuration options for the transcript generation.
 
 What format to return the transcript in. Use the `ExportReturnType` enum for type safety.
 
-| Value | Description |
-|-------|-------------|
+| Value          | Description                                  |
+| -------------- | -------------------------------------------- |
 | `'attachment'` | Returns an `AttachmentBuilder` ready to send |
-| `'buffer'` | Returns the HTML as a `Buffer` |
-| `'string'` | Returns the HTML as a raw `string` |
+| `'buffer'`     | Returns the HTML as a `Buffer`               |
+| `'string'`     | Returns the HTML as a raw `string`           |
 
 **Default:** `'attachment'`
 
@@ -105,7 +97,7 @@ The output filename when `returnType` is `'attachment'`.
 
 #### `options.saveImages: boolean`
 
-*Legacy option.* Downloads image attachments and embeds them as base64 data URIs. Useful when the channel will be deleted and images would be lost.
+_Legacy option._ Downloads image attachments and embeds them as base64 data URIs. Useful when the channel will be deleted and images would be lost.
 
 > ⚠️ This can significantly increase the transcript file size.
 
@@ -121,17 +113,17 @@ Downloads **all** remote assets (images, videos, avatars, emojis, icons, etc.) a
 
 Fine-grained control over which asset categories to preserve:
 
-| Key | Description | Default |
-|-----|-------------|---------|
-| `attachments` | Images, videos, audio, and file attachments | `false` |
-| `embeds` | Embed images, thumbnails, videos, author/footer icons | `false` |
-| `components` | Media gallery items, thumbnails, component files | `false` |
-| `avatars` | User avatar images | `false` |
-| `emojis` | Custom emoji and Twemoji assets | `false` |
-| `guildIcons` | Transcript header and favicon guild icon | `false` |
-| `inviteIcons` | Server invite preview icons | `false` |
-| `roleIcons` | Highest-role icon images | `false` |
-| `serverTagBadges` | Server tag badge images | `false` |
+| Key               | Description                                           | Default |
+| ----------------- | ----------------------------------------------------- | ------- |
+| `attachments`     | Images, videos, audio, and file attachments           | `false` |
+| `embeds`          | Embed images, thumbnails, videos, author/footer icons | `false` |
+| `components`      | Media gallery items, thumbnails, component files      | `false` |
+| `avatars`         | User avatar images                                    | `false` |
+| `emojis`          | Custom emoji and Twemoji assets                       | `false` |
+| `guildIcons`      | Transcript header and favicon guild icon              | `false` |
+| `inviteIcons`     | Server invite preview icons                           | `false` |
+| `roleIcons`       | Highest-role icon images                              | `false` |
+| `serverTagBadges` | Server tag badge images                               | `false` |
 
 ---
 
@@ -141,14 +133,14 @@ Fine-grained control over which asset categories to preserve:
 
 Enable or disable built-in transcript UI features:
 
-| Key | Description | Default |
-|-----|-------------|---------|
-| `search` | Built-in message search bar | `true` |
-| `imagePreview` | Click-to-open image lightbox | `true` |
-| `spoilerReveal` | Click spoilers to reveal content | `true` |
-| `messageLinks` | Reply/reference click-to-scroll | `true` |
-| `profileBadges` | APP badges, server tags, role icons | `true` |
-| `embedTweaks` | Client-side embed border/style fixes | `true` |
+| Key             | Description                          | Default |
+| --------------- | ------------------------------------ | ------- |
+| `search`        | Built-in message search bar          | `true`  |
+| `imagePreview`  | Click-to-open image lightbox         | `true`  |
+| `spoilerReveal` | Click spoilers to reveal content     | `true`  |
+| `messageLinks`  | Reply/reference click-to-scroll      | `true`  |
+| `profileBadges` | APP badges, server tags, role icons  | `true`  |
+| `embedTweaks`   | Client-side embed border/style fixes | `true`  |
 
 ---
 
@@ -188,7 +180,7 @@ Server-side render the Discord web components instead of loading them client-sid
 #### `options.callbacks.resolveChannel`
 
 ```typescript
-(channelId: string) => Awaitable<Channel | null>
+(channelId: string) => Awaitable<Channel | null>;
 ```
 
 Custom function to resolve channel mentions. Default uses `channel.client.channels.fetch(...)`.
@@ -196,7 +188,7 @@ Custom function to resolve channel mentions. Default uses `channel.client.channe
 #### `options.callbacks.resolveUser`
 
 ```typescript
-(userId: string) => Awaitable<User | null>
+(userId: string) => Awaitable<User | null>;
 ```
 
 Custom function to resolve user mentions. Default uses `channel.client.users.fetch(...)`.
@@ -204,7 +196,7 @@ Custom function to resolve user mentions. Default uses `channel.client.users.fet
 #### `options.callbacks.resolveRole`
 
 ```typescript
-(roleId: string) => Awaitable<Role | null>
+(roleId: string) => Awaitable<Role | null>;
 ```
 
 Custom function to resolve role mentions. Default uses `channel.guild?.roles.fetch(...)`.
@@ -212,7 +204,7 @@ Custom function to resolve role mentions. Default uses `channel.guild?.roles.fet
 #### `options.callbacks.resolveInvite`
 
 ```typescript
-(code: string) => Awaitable<{ name: string; icon: string | null; online: number; members: number; url: string } | null>
+(code: string) => Awaitable<{ name: string; icon: string | null; online: number; members: number; url: string } | null>;
 ```
 
 Custom function to resolve Discord invite links into rich preview cards.
@@ -220,7 +212,7 @@ Custom function to resolve Discord invite links into rich preview cards.
 #### `options.callbacks.resolveImageSrc`
 
 ```typescript
-(attachment: APIAttachment, message: APIMessage) => Awaitable<string | null | undefined>
+(attachment: APIAttachment, message: APIMessage) => Awaitable<string | null | undefined>;
 ```
 
 Custom function to process image attachments. Return a data URI, a new URL, or `null`/`undefined` to keep the original.
@@ -228,7 +220,7 @@ Custom function to process image attachments. Return a data URI, a new URL, or `
 #### `options.callbacks.resolveAssetSrc`
 
 ```typescript
-(asset: TranscriptAsset) => Awaitable<string | null | undefined>
+(asset: TranscriptAsset) => Awaitable<string | null | undefined>;
 ```
 
 Custom function to process any transcript asset. Return a data URI, a new URL, or `null`/`undefined` to keep the original.

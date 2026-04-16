@@ -38,10 +38,7 @@ client.on('ready', async () => {
     limit: -1,
     poweredBy: true,
     callbacks: {
-      resolveImageSrc: new TranscriptImageDownloader()
-        .withMaxSize(5120)
-        .withCompression(40, true)
-        .build(),
+      resolveImageSrc: new TranscriptImageDownloader().withMaxSize(5120).withCompression(40, true).build(),
     },
     features: {
       search: true,

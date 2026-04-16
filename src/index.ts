@@ -144,7 +144,6 @@ export async function createTranscript<T extends ExportReturnType = ExportReturn
   const { limit, filter } = options;
   const resolvedLimit = typeof limit === 'undefined' || limit === -1 ? Infinity : limit;
 
-
   while (true) {
     const fetchLimitOptions = { limit: 100, before: lastMessageId };
     if (!lastMessageId) delete fetchLimitOptions.before;

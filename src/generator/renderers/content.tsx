@@ -71,6 +71,7 @@ const DISCORD_ANSI_BACKGROUND: Record<number, string> = {
   106: '#93a1a1',
   107: '#fdf6e3',
 };
+// eslint-disable-next-line no-control-regex
 const ANSI_ESCAPE_SEQUENCE = /\u001b\[([0-9;]*)m/g;
 
 type DiscordAnsiState = {
@@ -349,7 +350,6 @@ export async function MessageSingleASTNode({ node, context }: { node: SingleASTN
       const url = node.target ?? node.content?.[0]?.content;
       const text = node.target ? node.content : url;
 
-
       if (typeof url === 'string' && (url.includes('discord.gg/') || url.includes('discord.com/invite/'))) {
         const code = url.split('/').pop();
         if (code && context.callbacks.resolveInvite) {
@@ -380,7 +380,6 @@ export async function MessageSingleASTNode({ node, context }: { node: SingleASTN
               </div>
             );
           } else {
-
             return (
               <div style={{ marginTop: '4px' }}>
                 <a href={url} target="_blank" rel="noreferrer" style={{ color: '#00a8fc', textDecoration: 'none' }}>
@@ -550,7 +549,7 @@ export async function MessageSingleASTNode({ node, context }: { node: SingleASTN
 
     case 'heading': {
       const level = node.level as number;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
       const HeadingTag = `h${level}` as any;
       return (
         <HeadingTag style={{ margin: '8px 0', padding: 0, fontWeight: 'bold' }}>
@@ -560,7 +559,6 @@ export async function MessageSingleASTNode({ node, context }: { node: SingleASTN
     }
 
     case 'list': {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const items = node.items as any[];
       return (
         <>

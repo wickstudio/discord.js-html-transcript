@@ -34,23 +34,23 @@ This package is a **completely modernized fork** of [`discord-html-transcripts`]
 
 ### 🆕 New Features
 
-| Feature | Description |
-|---------|-------------|
-| 🔀 **Forwarded Messages** | Full support for Discord's forwarded message format with origin info |
-| 🎙️ **Voice Messages** | Waveform visualization with play button, duration, and speed controls |
-| 📊 **Polls / Voting** | Native poll rendering with answer options, vote counts, and progress bars |
-| 🏷️ **Server Tags** | APP badges, role icons, and server tag badges on user profiles |
-| 🔘 **Buttons & Select Menus** | Primary, secondary, success, danger, and link button styles + dropdown menus |
-| 🔗 **Invite Link Previews** | Rich invite cards with server icon, member counts, and join button |
-| 🖼️ **Image Preview Lightbox** | Click any image to open a full-screen lightbox overlay |
-| 🔍 **Message Search** | Built-in search bar to find messages within transcripts |
-| 🧵 **Thread Previews** | Thread starter messages with preview boxes and participant info |
-| 📎 **File Attachments** | Native-styled file attachment cards with download buttons |
-| 🎨 **ANSI Code Blocks** | Full ANSI escape sequence rendering with colors and formatting |
-| 📱 **Fully Responsive** | Mobile-first responsive design that works perfectly on all screen sizes |
-| 📌 **Sticky Header** | Channel header stays visible while scrolling, just like Discord |
-| ⚙️ **Configurable Features** | Toggle search, image preview, spoiler reveal, and more on/off |
-| 💾 **Granular Asset Saving** | Fine-grained control over which remote assets (images, avatars, emojis, etc.) are preserved |
+| Feature                       | Description                                                                                 |
+| ----------------------------- | ------------------------------------------------------------------------------------------- |
+| 🔀 **Forwarded Messages**     | Full support for Discord's forwarded message format with origin info                        |
+| 🎙️ **Voice Messages**         | Waveform visualization with play button, duration, and speed controls                       |
+| 📊 **Polls / Voting**         | Native poll rendering with answer options, vote counts, and progress bars                   |
+| 🏷️ **Server Tags**            | APP badges, role icons, and server tag badges on user profiles                              |
+| 🔘 **Buttons & Select Menus** | Primary, secondary, success, danger, and link button styles + dropdown menus                |
+| 🔗 **Invite Link Previews**   | Rich invite cards with server icon, member counts, and join button                          |
+| 🖼️ **Image Preview Lightbox** | Click any image to open a full-screen lightbox overlay                                      |
+| 🔍 **Message Search**         | Built-in search bar to find messages within transcripts                                     |
+| 🧵 **Thread Previews**        | Thread starter messages with preview boxes and participant info                             |
+| 📎 **File Attachments**       | Native-styled file attachment cards with download buttons                                   |
+| 🎨 **ANSI Code Blocks**       | Full ANSI escape sequence rendering with colors and formatting                              |
+| 📱 **Fully Responsive**       | Mobile-first responsive design that works perfectly on all screen sizes                     |
+| 📌 **Sticky Header**          | Channel header stays visible while scrolling, just like Discord                             |
+| ⚙️ **Configurable Features**  | Toggle search, image preview, spoiler reveal, and more on/off                               |
+| 💾 **Granular Asset Saving**  | Fine-grained control over which remote assets (images, avatars, emojis, etc.) are preserved |
 
 ### 🎨 UI Improvements
 
@@ -197,8 +197,8 @@ const { TranscriptImageDownloader } = require('discord.js-html-transcript');
 const attachment = await discordTranscripts.createTranscript(channel, {
   callbacks: {
     resolveImageSrc: new TranscriptImageDownloader()
-      .withMaxSize(5120)          // 5MB max per image (in KB)
-      .withCompression(40, true)  // 40% quality, convert to webp
+      .withMaxSize(5120) // 5MB max per image (in KB)
+      .withCompression(40, true) // 40% quality, convert to webp
       .build(),
   },
 });
@@ -223,7 +223,7 @@ const attachment = await discordTranscripts.createTranscript(channel, {
   },
   callbacks: {
     resolveAssetSrc: new TranscriptAssetDownloader()
-      .withMaxSize(10240)  // 10MB per asset
+      .withMaxSize(10240) // 10MB per asset
       .build(),
   },
 });
@@ -235,48 +235,48 @@ const attachment = await discordTranscripts.createTranscript(channel, {
 
 ### Messages & Attachments
 
-| Normal Image | Multi Images | File Attachment |
-|:---:|:---:|:---:|
+|                   Normal Image                   |                   Multi Images                   |             File Attachment              |
+| :----------------------------------------------: | :----------------------------------------------: | :--------------------------------------: |
 | ![Normal Image](https://i.imgur.com/af2N5vi.png) | ![Multi Images](https://i.imgur.com/8P4BrYW.png) | ![File](https://i.imgur.com/VO399ds.png) |
 
 ### Forwarded Messages & Reactions
 
-| Forwarded Image | Forwarded + Reactions |
-|:---:|:---:|
+|                Forwarded Image                |                  Forwarded + Reactions                  |
+| :-------------------------------------------: | :-----------------------------------------------------: |
 | ![Forwarded](https://i.imgur.com/mc5hig6.png) | ![Forwarded Reactions](https://i.imgur.com/xJCyoLX.png) |
 
 ### Polls, Threads & Mentions
 
-| Poll | Thread | Mentions |
-|:---:|:---:|:---:|
+|                   Poll                   |                   Thread                   |                   Mentions                   |
+| :--------------------------------------: | :----------------------------------------: | :------------------------------------------: |
 | ![Poll](https://i.imgur.com/g4XUNBm.png) | ![Thread](https://i.imgur.com/T93KkSG.png) | ![Mentions](https://i.imgur.com/AhqzzOD.png) |
 
 ### Buttons, Select Menus & Slash Commands
 
-| Buttons & Select Menu | Slash Command & Voice |
-|:---:|:---:|
+|            Buttons & Select Menu            |           Slash Command & Voice           |
+| :-----------------------------------------: | :---------------------------------------: |
 | ![Buttons](https://i.imgur.com/JicYFrG.png) | ![Slash](https://i.imgur.com/t16ZCrJ.png) |
 
 ### Embeds
 
-| Embed 1 | Embed 2 | Embed 3 |
-|:---:|:---:|:---:|
+|                  Embed 1                  |                  Embed 2                  |                  Embed 3                  |
+| :---------------------------------------: | :---------------------------------------: | :---------------------------------------: |
 | ![Embed](https://i.imgur.com/7K1Vo6a.png) | ![Embed](https://i.imgur.com/bw6BNXq.png) | ![Embed](https://i.imgur.com/4r76uSu.png) |
 
 ### Links & Invites
 
-| Links | Invite Preview |
-|:---:|:---:|
+|                   Links                   |               Invite Preview               |
+| :---------------------------------------: | :----------------------------------------: |
 | ![Links](https://i.imgur.com/9I3wkgp.png) | ![Invite](https://i.imgur.com/w4VlqKd.png) |
 
 ### Markdown Formatting
 
-| Basic Formatting | Code Blocks | Headings |
-|:---:|:---:|:---:|
+|             Basic Formatting              |               Code Blocks                |                   Headings                   |
+| :---------------------------------------: | :--------------------------------------: | :------------------------------------------: |
 | ![Basic](https://i.imgur.com/007RSBl.png) | ![Code](https://i.imgur.com/lFrHlRO.png) | ![Headings](https://i.imgur.com/3bho2uy.png) |
 
-| Block Quotes | Lists | ANSI Styling |
-|:---:|:---:|:---:|
+|                Block Quotes                |                   Lists                   |               ANSI Styling               |
+| :----------------------------------------: | :---------------------------------------: | :--------------------------------------: |
 | ![Quotes](https://i.imgur.com/wpJQhSA.png) | ![Lists](https://i.imgur.com/A7dKzLa.png) | ![ANSI](https://i.imgur.com/WstVA3K.png) |
 
 ---
@@ -287,9 +287,9 @@ const attachment = await discordTranscripts.createTranscript(channel, {
 
 Fetches messages from a channel and generates an HTML transcript.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `channel` | `TextBasedChannel` | The channel to export |
+| Parameter | Type                      | Description                       |
+| --------- | ------------------------- | --------------------------------- |
+| `channel` | `TextBasedChannel`        | The channel to export             |
 | `options` | `CreateTranscriptOptions` | Configuration options (see above) |
 
 **Returns:** `Promise<AttachmentBuilder | Buffer | string>`
@@ -308,11 +308,11 @@ const transcript = await discordTranscripts.createTranscript(channel, {
 
 Generates a transcript from a pre-fetched array of messages.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `messages` | `Message[] \| Collection<string, Message>` | Messages to include |
-| `channel` | `Channel` | Channel for header/guild info |
-| `options` | `GenerateFromMessagesOptions` | Configuration options (see above) |
+| Parameter  | Type                                       | Description                       |
+| ---------- | ------------------------------------------ | --------------------------------- |
+| `messages` | `Message[] \| Collection<string, Message>` | Messages to include               |
+| `channel`  | `Channel`                                  | Channel for header/guild info     |
+| `options`  | `GenerateFromMessagesOptions`              | Configuration options (see above) |
 
 **Returns:** `Promise<AttachmentBuilder | Buffer | string>`
 
@@ -354,17 +354,17 @@ const attachment = await discordTranscripts.createTranscript(channel, {
 
 ```javascript
 const downloader = new TranscriptImageDownloader()
-  .withMaxSize(5120)          // max file size in KB
-  .withCompression(40, true)  // quality %, convert to webp
-  .build();                   // returns a resolveImageSrc callback
+  .withMaxSize(5120) // max file size in KB
+  .withCompression(40, true) // quality %, convert to webp
+  .build(); // returns a resolveImageSrc callback
 ```
 
 #### `TranscriptAssetDownloader`
 
 ```javascript
 const downloader = new TranscriptAssetDownloader()
-  .withMaxSize(10240)         // max file size in KB
-  .build();                   // returns a resolveAssetSrc callback
+  .withMaxSize(10240) // max file size in KB
+  .build(); // returns a resolveAssetSrc callback
 ```
 
 ---
@@ -400,9 +400,7 @@ client.on('messageCreate', async (message) => {
         embedTweaks: true,
       },
       callbacks: {
-        resolveAssetSrc: new TranscriptAssetDownloader()
-          .withMaxSize(10240)
-          .build(),
+        resolveAssetSrc: new TranscriptAssetDownloader().withMaxSize(10240).build(),
       },
       footerText: 'Exported {number} message{s}.',
       poweredBy: true,
@@ -420,26 +418,26 @@ client.on('messageCreate', async (message) => {
 
 ## 🆚 Comparison with Original
 
-| Feature | `discord-html-transcripts` | `discord.js-html-transcript` |
-|---------|:---:|:---:|
-| Basic Messages & Embeds | ✅ | ✅ |
-| Forwarded Messages | ❌ | ✅ |
-| Voice Messages | ❌ | ✅ |
-| Polls / Voting | ❌ | ✅ |
-| Server Tags & Role Icons | ❌ | ✅ |
-| Buttons & Select Menus (Modern) | ❌ | ✅ |
-| Discord Invite Previews | ❌ | ✅ |
-| Image Preview Lightbox | ❌ | ✅ |
-| Message Search | ❌ | ✅ |
-| ANSI Code Block Styling | ❌ | ✅ |
-| Thread Preview Cards | ❌ | ✅ |
-| Fully Responsive Mobile UI | ❌ | ✅ |
-| Sticky Channel Header | ❌ | ✅ |
-| Feature Toggle System | ❌ | ✅ |
-| Granular Asset Saving | ❌ | ✅ |
-| Native File Attachment Cards | ❌ | ✅ |
-| Image Compression (sharp) | ❌ | ✅ |
-| Multi-Image Gallery Grid | ❌ | ✅ |
+| Feature                         | `discord-html-transcripts` | `discord.js-html-transcript` |
+| ------------------------------- | :------------------------: | :--------------------------: |
+| Basic Messages & Embeds         |             ✅             |              ✅              |
+| Forwarded Messages              |             ❌             |              ✅              |
+| Voice Messages                  |             ❌             |              ✅              |
+| Polls / Voting                  |             ❌             |              ✅              |
+| Server Tags & Role Icons        |             ❌             |              ✅              |
+| Buttons & Select Menus (Modern) |             ❌             |              ✅              |
+| Discord Invite Previews         |             ❌             |              ✅              |
+| Image Preview Lightbox          |             ❌             |              ✅              |
+| Message Search                  |             ❌             |              ✅              |
+| ANSI Code Block Styling         |             ❌             |              ✅              |
+| Thread Preview Cards            |             ❌             |              ✅              |
+| Fully Responsive Mobile UI      |             ❌             |              ✅              |
+| Sticky Channel Header           |             ❌             |              ✅              |
+| Feature Toggle System           |             ❌             |              ✅              |
+| Granular Asset Saving           |             ❌             |              ✅              |
+| Native File Attachment Cards    |             ❌             |              ✅              |
+| Image Compression (sharp)       |             ❌             |              ✅              |
+| Multi-Image Gallery Grid        |             ❌             |              ✅              |
 
 ---
 

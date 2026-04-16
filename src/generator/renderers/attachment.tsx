@@ -62,7 +62,7 @@ function getAttachmentAssetKind(type: AttachmentTypes): TranscriptAssetKind {
       return 'attachment-video';
     case 'audio':
       return 'attachment-audio';
-    default:
+    case 'file':
       return 'attachment-file';
   }
 }
@@ -117,7 +117,7 @@ export async function Attachment({
   context: RenderMessageContext;
   message: Message;
 }) {
-  let url = await resolveAttachmentUrl(attachment, message, context);
+  const url = await resolveAttachmentUrl(attachment, message, context);
   const name = attachment.name;
   const width = attachment.width;
   const height = attachment.height;
@@ -135,19 +135,28 @@ export async function Attachment({
       <div className="discord-custom-file-base" slot="attachment">
         <div className="discord-custom-file-icon">
           <svg width="30" height="40" viewBox="0 0 30 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" clipRule="evenodd" d="M18 0H4C1.79086 0 0 1.79086 0 4V36C0 38.2091 1.79086 40 4 40H26C28.2091 40 30 38.2091 30 36V12L18 0Z" fill="#C9CDD3" />
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M18 0H4C1.79086 0 0 1.79086 0 4V36C0 38.2091 1.79086 40 4 40H26C28.2091 40 30 38.2091 30 36V12L18 0Z"
+              fill="#C9CDD3"
+            />
             <path d="M18 0L30 12H18V0Z" fill="#88919E" />
           </svg>
         </div>
         <div className="discord-custom-file-inner">
-          <a className="discord-custom-file-name" href={url} target="_blank" rel="noopener noreferrer">{name ?? 'file'}</a>
-          <div className="discord-custom-file-size">
-            {formatBytes(attachment.size)}
-          </div>
+          <a className="discord-custom-file-name" href={url} target="_blank" rel="noopener noreferrer">
+            {name ?? 'file'}
+          </a>
+          <div className="discord-custom-file-size">{formatBytes(attachment.size)}</div>
         </div>
         <a className="discord-custom-file-download" href={url} download>
           <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-            <path fillRule="evenodd" clipRule="evenodd" d="M16.293 9.29289C16.6835 8.90237 17.3167 8.90237 17.7072 9.29289C18.0977 9.68342 18.0977 10.3166 17.7072 10.7071L12.7072 15.7071C12.3167 16.0976 11.6835 16.0976 11.293 15.7071L6.29297 10.7071C5.90244 10.3166 5.90244 9.68342 6.29297 9.29289C6.68349 8.90237 7.31666 8.90237 7.70718 9.29289L11.0001 12.5858V2C11.0001 1.44772 11.4478 1 12.0001 1C12.5524 1 13.0001 1.44772 13.0001 2V12.5858L16.293 9.29289ZM3 19C2.44772 19 2 19.4477 2 20C2 20.5523 2.44772 21 3 21H21C21.5523 21 22 20.5523 22 20C22 19.4477 21.5523 19 21 19H3Z" />
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M16.293 9.29289C16.6835 8.90237 17.3167 8.90237 17.7072 9.29289C18.0977 9.68342 18.0977 10.3166 17.7072 10.7071L12.7072 15.7071C12.3167 16.0976 11.6835 16.0976 11.293 15.7071L6.29297 10.7071C5.90244 10.3166 5.90244 9.68342 6.29297 9.29289C6.68349 8.90237 7.31666 8.90237 7.70718 9.29289L11.0001 12.5858V2C11.0001 1.44772 11.4478 1 12.0001 1C12.5524 1 13.0001 1.44772 13.0001 2V12.5858L16.293 9.29289ZM3 19C2.44772 19 2 19.4477 2 20C2 20.5523 2.44772 21 3 21H21C21.5523 21 22 20.5523 22 20C22 19.4477 21.5523 19 21 19H3Z"
+            />
           </svg>
         </a>
       </div>

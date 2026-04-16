@@ -39,6 +39,7 @@ Enables click-to-scroll behavior for reply references. When a user clicks on a r
 ### 🏷️ Profile Badges (`profileBadges`)
 
 Enables post-render injection of:
+
 - **APP badges** - Normalizes the old "BOT" badge to Discord's modern "APP" badge
 - **Server tags** - Custom server tag badges displayed next to usernames
 - **Role icons** - Highest-role icon images next to usernames
@@ -56,12 +57,12 @@ Applies client-side fixes to embed borders and styling that can't be controlled 
 ```javascript
 const transcript = await discordTranscripts.createTranscript(channel, {
   features: {
-    search: true,          // enable search bar
-    imagePreview: true,    // enable image lightbox
-    spoilerReveal: true,   // enable spoiler click-to-reveal
-    messageLinks: true,    // enable reply scroll behavior
-    profileBadges: true,   // enable APP badges, server tags, role icons
-    embedTweaks: true,     // enable embed style fixes
+    search: true, // enable search bar
+    imagePreview: true, // enable image lightbox
+    spoilerReveal: true, // enable spoiler click-to-reveal
+    messageLinks: true, // enable reply scroll behavior
+    profileBadges: true, // enable APP badges, server tags, role icons
+    embedTweaks: true, // enable embed style fixes
   },
 });
 ```

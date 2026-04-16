@@ -14,11 +14,11 @@ jobs:
   build_and_test:
     name: Build & Lint
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        
+
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
@@ -38,7 +38,7 @@ jobs:
 
       - name: Lint Code
         run: pnpm run lint
-        
+
       - name: Build Package
         run: pnpm run build
 
@@ -48,11 +48,11 @@ jobs:
     # Only run the publish job when a new GitHub Release is created
     if: github.event_name == 'release' && github.event.action == 'created'
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        
+
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:

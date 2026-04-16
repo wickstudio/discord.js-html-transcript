@@ -5,6 +5,7 @@ Test scripts for validating `discord.js-html-transcript` functionality against a
 ## Setup
 
 1. Copy `.env.example` to `.env` in the project root:
+
    ```
    TOKEN=your_bot_token_here
    CHANNEL=your_channel_id_here

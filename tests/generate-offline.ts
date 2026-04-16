@@ -58,9 +58,7 @@ client.on('ready', async () => {
       embedTweaks: true,
     },
     callbacks: {
-      resolveAssetSrc: new TranscriptAssetDownloader()
-        .withMaxSize(10240)
-        .build(),
+      resolveAssetSrc: new TranscriptAssetDownloader().withMaxSize(10240).build(),
     },
   });
 

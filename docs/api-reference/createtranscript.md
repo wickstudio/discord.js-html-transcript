@@ -13,18 +13,15 @@ const discordTranscripts = require('discord.js-html-transcript');
 
 client.on('messageCreate', async (message) => {
   if (message.content === '!transcript') {
-    const transcript = await discordTranscripts.createTranscript(
-      message.channel,
-      {
-        returnType: 'attachment',
-        filename: `transcript-${message.channel.id}.html`,
-        limit: -1,
-        features: {
-          search: true,
-          imagePreview: true,
-        },
-      }
-    );
+    const transcript = await discordTranscripts.createTranscript(message.channel, {
+      returnType: 'attachment',
+      filename: `transcript-${message.channel.id}.html`,
+      limit: -1,
+      features: {
+        search: true,
+        imagePreview: true,
+      },
+    });
 
     await message.reply({
       content: '📄 Here is your transcript!',
@@ -46,18 +43,15 @@ import { ExportReturnType } from 'discord.js-html-transcript';
 
 client.on('messageCreate', async (message) => {
   if (message.content === '!transcript') {
-    const transcript = await discordTranscripts.createTranscript(
-      message.channel,
-      {
-        returnType: ExportReturnType.Attachment,
-        filename: `transcript-${message.channel.id}.html`,
-        limit: -1,
-        features: {
-          search: true,
-          imagePreview: true,
-        },
-      }
-    );
+    const transcript = await discordTranscripts.createTranscript(message.channel, {
+      returnType: ExportReturnType.Attachment,
+      filename: `transcript-${message.channel.id}.html`,
+      limit: -1,
+      features: {
+        search: true,
+        imagePreview: true,
+      },
+    });
 
     await message.reply({
       content: '📄 Here is your transcript!',
@@ -74,7 +68,7 @@ client.on('messageCreate', async (message) => {
 ## Parameters
 
 ```javascript
-createTranscript(channel, options = {});
+createTranscript(channel, (options = {}));
 ```
 
 ### `channel: TextBasedChannel`
@@ -99,7 +93,7 @@ A function called for each message to determine if it should be included in the 
 
 ```javascript
 // Example: exclude bot messages
-filter: (message) => !message.author.bot
+filter: (message) => !message.author.bot;
 ```
 
 **Default:** `() => true` (include all messages)
