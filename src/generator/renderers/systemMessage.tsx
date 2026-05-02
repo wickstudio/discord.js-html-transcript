@@ -1,7 +1,7 @@
-import { DiscordReaction, DiscordReactions, DiscordSystemMessage } from '@derockdev/discord-components-react';
 import { MessageType, type APIMessage, type GuildMember, type Message, type User } from 'discord.js';
 import React from 'react';
 import type { RenderMessageContext } from '..';
+import { DiscordReaction, DiscordReactions, DiscordSystemMessage } from '../discordComponents';
 import { parseDiscordEmoji } from '../../utils/utils';
 
 export default async function SystemMessage({ message, context }: { message: Message; context: RenderMessageContext }) {

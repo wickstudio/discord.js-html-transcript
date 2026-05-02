@@ -1,7 +1,7 @@
-import { DiscordAttachment, DiscordAttachments } from '@derockdev/discord-components-react';
 import React from 'react';
 import type { APIAttachment, APIMessage, Attachment as AttachmentType, Message } from 'discord.js';
 import type { RenderMessageContext } from '..';
+import { DiscordAttachment, DiscordAttachments } from '../discordComponents';
 import type { AttachmentTypes, TranscriptAssetKind } from '../../types';
 import { formatBytes } from '../../utils/utils';
 import DiscordAttachmentGallery from './components/Attachment Gallery';

@@ -4,7 +4,7 @@ import {
   DiscordEmbedField,
   DiscordEmbedFields,
   DiscordEmbedFooter,
-} from '@derockdev/discord-components-react';
+} from '../discordComponents';
 import type { APIMessage, Message } from 'discord.js';
 import React from 'react';
 import type { RenderMessageContext } from '..';

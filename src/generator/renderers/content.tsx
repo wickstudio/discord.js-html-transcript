@@ -9,7 +9,7 @@ import {
   DiscordQuote,
   DiscordSpoiler,
   DiscordUnderlined,
-} from '@derockdev/discord-components-react';
+} from '../discordComponents';
 import parse, { type RuleTypesExtended } from 'discord-markdown-parser';
 import { ChannelType, type APIMessageComponentEmoji } from 'discord.js';
 import React from 'react';

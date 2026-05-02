@@ -1,4 +1,3 @@
-import { DiscordActionRow, DiscordAttachment, DiscordSpoiler } from '@derockdev/discord-components-react';
 import {
   ComponentType,
   type ThumbnailComponent,
@@ -6,6 +5,7 @@ import {
   type TopLevelComponent,
 } from 'discord.js';
 import React from 'react';
+import { DiscordActionRow, DiscordAttachment, DiscordSpoiler } from '../discordComponents';
 import { parseDiscordEmoji } from '../../utils/utils';
 import DiscordSelectMenu from './components/Select Menu';
 import DiscordContainer from './components/Container';

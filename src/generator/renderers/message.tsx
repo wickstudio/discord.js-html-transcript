@@ -7,7 +7,7 @@ import {
   DiscordReactions,
   DiscordThread,
   DiscordThreadMessage,
-} from '@derockdev/discord-components-react';
+} from '../discordComponents';
 import { type APIMessage, type Message as MessageType } from 'discord.js';
 import React from 'react';
 import type { RenderMessageContext } from '..';

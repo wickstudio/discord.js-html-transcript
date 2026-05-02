@@ -1,6 +1,6 @@
 {
   "name": "discord.js-html-transcript",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Generate beautiful, pixel-perfect Discord HTML transcripts with full support for modern Discord UI - buttons, select menus, polls, voice messages, forwarded messages, server tags, and more.",
   "main": "dist/index.js",
   "homepage": "https://github.com/wickstudio/discord.js-html-transcript",
@@ -73,7 +73,6 @@
   },
   "dependencies": {
     "@derockdev/discord-components-core": "^3.6.1",
-    "@derockdev/discord-components-react": "^3.6.1",
     "discord-markdown-parser": "~1.2.0",
     "react": "19.1.1",
     "react-dom": "19.1.1",

@@ -1,7 +1,7 @@
-import { DiscordMessages as DiscordMessagesComponent } from '@derockdev/discord-components-react';
 import { ChannelType } from 'discord.js';
 import React from 'react';
 import type { RenderMessageContext } from '.';
+import { DiscordMessages as DiscordMessagesComponent } from './discordComponents';
 import MessageContent, { RenderType } from './renderers/content';
 import DiscordMessage from './renderers/message';
 import { globalStyles } from './renderers/components/styles';

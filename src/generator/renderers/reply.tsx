@@ -1,7 +1,7 @@
-import { DiscordReply } from '@derockdev/discord-components-react';
 import { type APIMessage, type Message, UserFlags } from 'discord.js';
 import type { RenderMessageContext } from '..';
 import React from 'react';
+import { DiscordReply } from '../discordComponents';
 import MessageContent, { RenderType } from './content';
 
 export default async function MessageReply({ message, context }: { message: Message; context: RenderMessageContext }) {
